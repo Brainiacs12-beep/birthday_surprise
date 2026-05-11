@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Happy Birthday My Love 💕</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,600&family=Pacifico&family=Dancing+Script:wght@400;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --pink:#ff6b9d;--pink2:#ff9dc5;--purple:#c77dff;--purple2:#dba8ff;
+  --gold:#ffd93d;--gold2:#ffe97a;--mint:#6bcb77;--blue:#4d96ff;
+  --red:#ff6b6b;--dark:#0a0616;--dark2:#150a2a;--dark3:#1e0f38;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);
+  font-family:'Nunito',sans-serif;-webkit-tap-highlight-color:transparent;}
+
+#star-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;}
+
+/* PAGE SYSTEM */
+.page{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;
+  opacity:0;pointer-events:none;transition:opacity .8s ease;z-index:1;}
+.page.active{opacity:1;pointer-events:all;}
+
+/* SHARED BUTTON */
+.nxt{display:inline-flex;align-items:center;gap:.5rem;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  border:none;border-radius:60px;padding:.9rem 2.6rem;
+  font-family:'Nunito',sans-serif;font-size:1.15rem;font-weight:900;color:#fff;
+  cursor:pointer;box-shadow:0 10px 40px rgba(255,107,157,.45);
+  animation:pulseBtn 2s ease-in-out infinite;transition:transform .15s;}
+.nxt:active{transform:scale(.94);}
+@keyframes pulseBtn{0%,100%{box-shadow:0 10px 40px rgba(255,107,157,.38);}
+  50%{box-shadow:0 10px 60px rgba(199,125,255,.65);}}
+.hidden{display:none!important;}
+
+/* CONFETTI */
+.cf{position:fixed;border-radius:2px;animation:cfFall linear infinite;pointer-events:none;z-index:5;}
+@keyframes cfFall{0%{transform:translateY(-40px) rotate(0deg);opacity:1;}
+  100%{transform:translateY(110vh) rotate(720deg);opacity:.1;}}
+
+/* KEYFRAMES */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes floatUD{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
+@keyframes shimmer{0%{background-position:0%;}100%{background-position:200%;}}
+@keyframes heartbeat{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+@keyframes spinSlow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 18px rgba(255,107,157,.4));}
+  50%{filter:drop-shadow(0 0 36px rgba(199,125,255,.7));}}
+@keyframes orbPulse{0%,100%{transform:scale(1);opacity:.12;}50%{transform:scale(1.1);opacity:.2;}}
+@keyframes ab{0%,100%{transform:rotate(45deg) translate(0,0);opacity:1;}
+  50%{transform:rotate(45deg) translate(5px,5px);opacity:.3;}}
+@keyframes swayS{from{transform:rotate(-7deg);}to{transform:rotate(7deg);}}
+@keyframes cardIn{from{transform:scale(.65) translateY(40px);opacity:0;}
+  to{transform:scale(1) translateY(0);opacity:1;}}
+@keyframes popA{0%{transform:scale(1);opacity:1;}40%{transform:scale(1.3);opacity:.9;}
+  100%{transform:scale(0);opacity:0;}}
+@keyframes ptFly{0%{transform:translate(0,0) scale(1);opacity:1;}
+  100%{transform:translate(var(--tx),var(--ty)) scale(0);opacity:0;}}
+@keyframes flickerT{0%,100%{opacity:1;}50%{opacity:.6;}}
+@keyframes flickerF{0%{transform:scaleX(1) scaleY(1) rotate(-2deg);}
+  100%{transform:scaleX(.88) scaleY(.93) rotate(2deg);}}
+@keyframes smokeR{0%{opacity:.7;transform:translateY(0) scaleX(1);}
+  100%{opacity:0;transform:translateY(-50px) scaleX(2.5);}}
+
+/* ORBS */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;
+  animation:orbPulse ease-in-out infinite;}
+
+/* STREAMERS */
+.str{position:fixed;top:0;width:4px;border-radius:3px;
+  animation:swayS ease-in-out infinite alternate;opacity:.5;z-index:0;pointer-events:none;}
+
+/* ══════════════ PAGE 1 · WELCOME ══════════════ */
+#p1{background:radial-gradient(ellipse at 30% 20%,#2a0845 0%,var(--dark) 60%);}
+.p1-hero{min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:5rem 1.5rem 2.5rem;
+  position:relative;gap:.5rem;}
+.db{position:absolute;pointer-events:none;animation:floatUD ease-in-out infinite;}
+.mt{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,10vw,5.2rem);
+  font-style:italic;font-weight:900;text-align:center;line-height:1.15;
+  background:linear-gradient(135deg,#ff9dc5,#ffd93d,#dba8ff,#ff6b9d,#ffe97a);
+  background-size:300%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 4s linear infinite,fadeUp .9s ease both;
+  filter:drop-shadow(0 0 30px rgba(255,107,157,.35));z-index:3;position:relative;}
+.st{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(1.2rem,4vw,1.8rem);color:#f8c8e0;text-align:center;
+  letter-spacing:.05em;animation:fadeUp .9s ease .25s both;z-index:3;position:relative;}
+.ring{position:relative;width:200px;height:200px;margin:.6rem 0;z-index:3;}
+.ring-heart{position:absolute;top:50%;left:50%;font-size:1.1rem;transform-origin:0 0;}
+.chars{display:flex;gap:.8rem;align-items:flex-end;z-index:3;position:relative;
+  animation:fadeUp .9s ease .5s both;}
+.char{animation:floatUD ease-in-out infinite;}
+.char:nth-child(1){animation-duration:2.3s;}
+.char:nth-child(2){animation-duration:2s;animation-delay:.4s;margin-bottom:-10px;}
+.char:nth-child(3){animation-duration:2.7s;animation-delay:.8s;}
+.fe{position:absolute;pointer-events:none;animation:floatUD ease-in-out infinite;z-index:2;}
+.sh{margin-top:1.8rem;cursor:pointer;display:flex;flex-direction:column;
+  align-items:center;gap:.4rem;color:rgba(255,255,255,.5);
+  font-size:.72rem;letter-spacing:3px;text-transform:uppercase;
+  animation:fadeUp 1s ease 1.4s both;z-index:3;position:relative;}
+.sa{width:22px;height:22px;border-right:2.5px solid var(--pink);
+  border-bottom:2.5px solid var(--pink);transform:rotate(45deg);
+  animation:ab 1.3s ease-in-out infinite;}
+.rs{min-height:100svh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;background:linear-gradient(180deg,#1e0f38,#2e0a4e);
+  padding:2rem;position:relative;}
+.rh{font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.8rem,6vw,3rem);color:#f8c8e0;text-align:center;margin-bottom:.5rem;}
+.rs-sub{font-family:'Cormorant Garamond',serif;font-size:1.1rem;
+  color:rgba(255,255,255,.5);text-align:center;margin-bottom:2.5rem;letter-spacing:.05em;}
+
+/* ══════════════ PAGE 2 · BALLOONS ══════════════ */
+#p2{background:radial-gradient(ellipse at 70% 30%,#0d1f40,var(--dark) 70%);}
+.p2-inner{min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:2rem 1rem;position:relative;}
+.ph{font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.3rem,5vw,2.2rem);color:#f8c8e0;text-align:center;
+  margin-bottom:.4rem;z-index:2;position:relative;}
+.ph-sub{font-size:.85rem;color:rgba(255,255,255,.45);text-align:center;
+  margin-bottom:2rem;letter-spacing:1px;z-index:2;position:relative;}
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem .8rem;
+  max-width:330px;width:100%;position:relative;z-index:2;}
+.bw{display:flex;flex-direction:column;align-items:center;cursor:pointer;
+  animation:floatUD ease-in-out infinite;position:relative;transition:filter .2s;}
+.bw:hover{filter:brightness(1.1);}
+.bw:nth-child(1){animation-duration:3s;}
+.bw:nth-child(2){animation-duration:2.6s;animation-delay:.3s;}
+.bw:nth-child(3){animation-duration:3.3s;animation-delay:.6s;}
+.bw:nth-child(4){animation-duration:2.8s;animation-delay:.15s;}
+.bw:nth-child(5){animation-duration:3.1s;animation-delay:.45s;}
+.bw:nth-child(6){animation-duration:2.5s;animation-delay:.9s;}
+.bb{width:76px;height:90px;border-radius:50% 50% 50% 50%/45% 45% 55% 55%;
+  position:relative;display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;box-shadow:inset -12px -8px 24px rgba(0,0,0,.25),0 6px 22px rgba(0,0,0,.3);
+  transition:transform .15s;}
+.bb::after{content:'';position:absolute;top:12px;left:12px;width:16px;height:22px;
+  background:rgba(255,255,255,.3);border-radius:50%;transform:rotate(-30deg);}
+.bkn{width:9px;height:9px;border-radius:50% 50% 50% 50%/40% 40% 60% 60%;margin-top:-1px;}
+.bst{width:1.5px;height:44px;background:rgba(255,255,255,.3);}
+.bw.popping .bb{animation:popA .42s ease forwards;}
+.bw.popped{animation:none!important;pointer-events:none;}
+.bw.popped .bb,.bw.popped .bkn,.bw.popped .bst{opacity:0;transition:opacity .1s;}
+.pt{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;
+  animation:ptFly .55s ease forwards;}
+/* msg overlay */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;z-index:100;padding:1.5rem;
+  opacity:0;pointer-events:none;transition:opacity .35s ease;}
+.mo.open{opacity:1;pointer-events:all;}
+.mc{background:linear-gradient(135deg,rgba(255,107,157,.12),rgba(199,125,255,.12));
+  border:1.5px solid rgba(255,107,157,.3);border-radius:28px;padding:2.2rem 1.8rem;
+  max-width:320px;width:100%;text-align:center;backdrop-filter:blur(24px);
+  animation:cardIn .45s cubic-bezier(.175,.885,.32,1.3) both;}
+.mh{font-size:2.2rem;margin-bottom:.8rem;animation:heartbeat 1s ease infinite;}
+.mtxt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;
+  color:#f8d0e8;line-height:1.7;margin-bottom:1.5rem;}
+.mc-btn{background:linear-gradient(135deg,var(--pink),var(--purple));border:none;
+  border-radius:30px;padding:.65rem 2.4rem;color:#fff;font-family:'Nunito',sans-serif;
+  font-size:1rem;font-weight:700;cursor:pointer;transition:transform .15s;}
+.mc-btn:active{transform:scale(.93);}
+
+/* ══════════════ PAGE 3 · REASONS ══════════════ */
+#p3{background:radial-gradient(ellipse at 20% 80%,#2a0033,var(--dark) 70%);}
+.p3-inner{min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-start;padding:3rem 1.2rem 2rem;gap:1.2rem;}
+.p3-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:900;
+  font-size:clamp(1.8rem,6vw,2.8rem);text-align:center;
+  background:linear-gradient(135deg,var(--pink2),var(--gold),var(--purple2));
+  background-size:200%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 4s linear infinite,fadeUp .8s ease both;}
+.p3-sub{font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:rgba(248,200,224,.7);font-size:1rem;text-align:center;
+  animation:fadeUp .8s ease .2s both;}
+.reasons-grid{display:flex;flex-direction:column;gap:.85rem;width:100%;max-width:360px;}
+.reason-card{background:linear-gradient(135deg,rgba(255,107,157,.1),rgba(199,125,255,.08));
+  border:1px solid rgba(255,107,157,.22);border-radius:20px;padding:1rem 1.2rem;
+  display:flex;align-items:center;gap:.9rem;
+  animation:fadeUp .7s ease both;backdrop-filter:blur(12px);
+  transition:transform .2s,border-color .2s;}
+.reason-card:hover{transform:translateX(5px);border-color:rgba(255,107,157,.5);}
+.reason-icon{font-size:1.9rem;min-width:2.2rem;text-align:center;
+  animation:floatUD ease-in-out infinite;animation-duration:2.5s;}
+.reason-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;
+  color:#f8d0e8;line-height:1.45;}
+.reason-text strong{font-family:'Playfair Display',serif;font-style:italic;
+  color:var(--pink2);font-weight:700;display:block;margin-bottom:.1rem;font-size:1.1rem;}
+
+/* ══════════════ PAGE 4 · LOVE LETTER ══════════════ */
+#p4{background:radial-gradient(ellipse at 80% 20%,#1a0020,var(--dark) 70%);}
+.p4-inner{min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:3rem 1.5rem 2rem;gap:1.2rem;}
+.p4-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:900;
+  font-size:clamp(1.6rem,5.5vw,2.6rem);text-align:center;
+  background:linear-gradient(135deg,#ff9dc5,#ffd93d,#dba8ff);
+  background-size:200%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 4s linear infinite,fadeUp .8s ease both;
+  z-index:2;position:relative;}
+.envelope-wrap{position:relative;cursor:pointer;z-index:2;
+  animation:glowPulse 3s ease-in-out infinite;text-align:center;}
+.env-hint{font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:rgba(255,200,224,.6);font-size:.9rem;text-align:center;
+  letter-spacing:.08em;margin-top:.5rem;}
+.letter-card{display:none;flex-direction:column;align-items:center;
+  max-width:340px;width:100%;z-index:2;}
+.letter-card.show{display:flex;animation:fadeUp .9s ease both;}
+.letter-paper{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,107,157,.06));
+  border:1.5px solid rgba(255,107,157,.25);border-radius:24px;
+  padding:2rem 1.6rem;text-align:center;backdrop-filter:blur(20px);
+  position:relative;overflow:hidden;}
+.letter-paper::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 30%,rgba(199,125,255,.08),transparent 70%);
+  pointer-events:none;}
+.letter-salut{font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1.5rem;color:var(--pink2);margin-bottom:.8rem;}
+.letter-body{font-family:'Cormorant Garamond',serif;font-size:1.1rem;
+  color:#f8d0e8;line-height:1.8;margin-bottom:1rem;}
+.letter-sign{font-family:'Dancing Script',cursive;font-size:1.3rem;
+  color:var(--gold2);margin-top:.5rem;}
+.letter-seal{font-size:2.6rem;animation:heartbeat 1.2s ease-in-out infinite;
+  margin:.8rem 0 0;}
+.timeline{display:flex;flex-direction:column;gap:.65rem;width:100%;max-width:340px;z-index:2;}
+.tl-item{display:flex;align-items:center;gap:.9rem;animation:fadeUp .7s ease both;}
+.tl-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;
+  animation:heartbeat 1.5s ease-in-out infinite;}
+.tl-text{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(248,208,232,.75);}
+.tl-text em{font-style:normal;}
+
+/* ══════════════ PAGE 5 · CAKE ══════════════ */
+#p5{background:radial-gradient(ellipse at 50% 60%,#200840,var(--dark) 70%);}
+.p5-inner{min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:2rem 1rem;position:relative;}
+.candle-hint{font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.3rem;color:var(--gold2);text-align:center;margin-bottom:1.4rem;
+  animation:flickerT 2.5s ease-in-out infinite;}
+.flame{transition:opacity .6s ease,transform .6s ease;transform-origin:bottom center;}
+.flame.blown{opacity:0;transform:scaleY(0) translateY(18px);}
+.flame-inner{animation:flickerF .5s ease-in-out infinite alternate;transform-origin:bottom center;}
+.smoke-path{opacity:0;transition:none;}
+.smoke-path.active{animation:smokeR 2s ease forwards;}
+.wishes-sec{display:none;flex-direction:column;align-items:center;
+  text-align:center;padding:1rem;width:100%;}
+.wishes-sec.show{display:flex;animation:fadeUp .9s ease both;}
+.wt{font-family:'Playfair Display',serif;font-style:italic;font-weight:900;
+  font-size:clamp(2rem,8vw,3.5rem);
+  background:linear-gradient(135deg,var(--gold),var(--pink),var(--purple));
+  background-size:200%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 3s linear infinite;
+  filter:drop-shadow(0 0 22px rgba(255,217,61,.4));margin-bottom:.6rem;}
+.wm{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;
+  color:#f8d0e8;line-height:1.8;max-width:300px;margin-bottom:1.2rem;}
+.forever{font-family:'Dancing Script',cursive;font-size:1.1rem;
+  color:rgba(248,200,224,.65);margin-top:.4rem;}
+</style>
+</head>
+<body>
+
+<canvas id="star-canvas"></canvas>
+
+<!-- background orbs -->
+<div class="orb" style="width:300px;height:300px;background:radial-gradient(circle,#c77dff,transparent);top:-80px;left:-80px;animation-duration:8s;"></div>
+<div class="orb" style="width:260px;height:260px;background:radial-gradient(circle,#ff6b9d,transparent);bottom:-60px;right:-60px;animation-duration:10s;animation-delay:2s;"></div>
+<div class="orb" style="width:200px;height:200px;background:radial-gradient(circle,#ffd93d,transparent);top:40%;left:-100px;animation-duration:12s;animation-delay:4s;"></div>
+
+<!-- ═══════════════════════════════════
+     PAGE 1 · WELCOME
+════════════════════════════════════ -->
+<div id="p1" class="page active">
+
+  <!-- deco balloons -->
+  <div class="db" style="left:3%;top:7%;animation-duration:3s;">
+    <svg width="46" height="60" viewBox="0 0 50 70"><ellipse cx="25" cy="28" rx="22" ry="25" fill="#ff6b9d" opacity=".85"/><ellipse cx="17" cy="18" rx="7" ry="10" fill="rgba(255,255,255,.3)" transform="rotate(-20 17 18)"/><polygon points="23,53 25,53 25,58 24,58" fill="#ff6b9d"/><line x1="24" y1="58" x2="20" y2="78" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/></svg>
+  </div>
+  <div class="db" style="right:3%;top:6%;animation-duration:2.6s;animation-delay:.5s;">
+    <svg width="46" height="60" viewBox="0 0 50 70"><ellipse cx="25" cy="28" rx="22" ry="25" fill="#c77dff" opacity=".85"/><ellipse cx="17" cy="18" rx="7" ry="10" fill="rgba(255,255,255,.3)" transform="rotate(-20 17 18)"/><polygon points="23,53 25,53 25,58 24,58" fill="#c77dff"/><line x1="24" y1="58" x2="22" y2="76" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/></svg>
+  </div>
+  <div class="db" style="left:18%;top:3%;animation-duration:3.4s;animation-delay:1s;">
+    <svg width="38" height="52" viewBox="0 0 50 70"><ellipse cx="25" cy="28" rx="22" ry="25" fill="#ffd93d" opacity=".85"/><ellipse cx="17" cy="18" rx="7" ry="10" fill="rgba(255,255,255,.3)" transform="rotate(-20 17 18)"/><polygon points="23,53 25,53 25,58 24,58" fill="#ffd93d"/><line x1="24" y1="58" x2="19" y2="75" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/></svg>
+  </div>
+  <div class="db" style="right:18%;top:4%;animation-duration:2.8s;animation-delay:.3s;">
+    <svg width="38" height="52" viewBox="0 0 50 70"><ellipse cx="25" cy="28" rx="22" ry="25" fill="#6bcb77" opacity=".85"/><ellipse cx="17" cy="18" rx="7" ry="10" fill="rgba(255,255,255,.3)" transform="rotate(-20 17 18)"/><polygon points="23,53 25,53 25,58 24,58" fill="#6bcb77"/><line x1="24" y1="58" x2="21" y2="76" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/></svg>
+  </div>
+  <div class="db" style="left:50%;top:2%;transform:translateX(-50%);animation-duration:3.2s;animation-delay:.7s;">
+    <svg width="42" height="56" viewBox="0 0 50 70"><ellipse cx="25" cy="28" rx="22" ry="25" fill="#4d96ff" opacity=".85"/><ellipse cx="17" cy="18" rx="7" ry="10" fill="rgba(255,255,255,.3)" transform="rotate(-20 17 18)"/><polygon points="23,53 25,53 25,58 24,58" fill="#4d96ff"/><line x1="24" y1="58" x2="20" y2="75" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/></svg>
+  </div>
+
+  <!-- HERO -->
+  <div class="p1-hero">
+    <span class="fe" style="left:5%;top:55%;font-size:1.3rem;animation-duration:3.1s;">🌸</span>
+    <span class="fe" style="right:5%;top:52%;font-size:1.4rem;animation-duration:2.8s;animation-delay:.7s;">🌺</span>
+    <span class="fe" style="left:2%;top:38%;font-size:1.1rem;animation-duration:3.6s;animation-delay:.3s;">✨</span>
+    <span class="fe" style="right:2%;top:36%;font-size:1.2rem;animation-duration:2.5s;animation-delay:1s;">💫</span>
+    <span class="fe" style="left:8%;top:22%;font-size:1rem;animation-duration:4s;animation-delay:.6s;">🌟</span>
+    <span class="fe" style="right:8%;top:20%;font-size:1rem;animation-duration:3.8s;animation-delay:1.2s;">🎊</span>
+
+    <!-- spinning heart ring -->
+    <div class="ring" style="animation:spinSlow 20s linear infinite;">
+      <div class="ring-heart" style="transform:translate(-50%,-50%) rotate(0deg)   translateY(-95px);">💕</div>
+      <div class="ring-heart" style="transform:translate(-50%,-50%) rotate(45deg)  translateY(-95px);">🌸</div>
+      <div class="ring-heart" style="transform:translate(-50%,-50%) rotate(90deg)  translateY(-95px);">✨</div>
+      <div class="ring-heart" style="transform:translate(-50%,-50%) rotate(135deg) translateY(-95px);">💕</div>
+      <div class="ring-heart" style="transform:translate(-50%,-50%) rotate(180deg) translateY(-95px);">🌟</div>
+      <div class="ring-heart" style="transform:translate(-50%,-50%) rotate(225deg) translateY(-95px);">💫</div>
+      <div class="ring-heart" style="transform:translate(-50%,-50%) rotate(270deg) translateY(-95px);">💕</div>
+      <div class="ring-heart" style="transform:translate(-50%,-50%) rotate(315deg) translateY(-95px);">🎀</div>
+    </div>
+
+    <h1 class="mt">Happy Birthday</h1>
+    <p class="st">My Dearest Love 💕</p>
+
+    <!-- CHARACTERS -->
+    <div class="chars">
+      <!-- Girl with cake -->
+      <div class="char">
+        <svg width="80" height="112" viewBox="0 0 80 112" fill="none">
+          <circle cx="40" cy="29" r="20" fill="#FFD5B0"/>
+          <path d="M20 25 Q20 7 40 7 Q60 7 60 25" fill="#7B3F00"/>
+          <path d="M20 25 Q15 36 17 46" fill="#7B3F00"/>
+          <path d="M60 25 Q65 36 63 46" fill="#7B3F00"/>
+          <path d="M30 8 Q40 2 50 8 Q40 14 30 8Z" fill="#ff6b9d"/>
+          <circle cx="33" cy="27" r="3" fill="#3d2511"/><circle cx="47" cy="27" r="3" fill="#3d2511"/>
+          <circle cx="34" cy="26" r="1.2" fill="white"/><circle cx="48" cy="26" r="1.2" fill="white"/>
+          <path d="M34 35 Q40 40 46 35" stroke="#3d2511" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="30" cy="32" rx="5" ry="3" fill="#ffb3ba" opacity=".5"/>
+          <ellipse cx="50" cy="32" rx="5" ry="3" fill="#ffb3ba" opacity=".5"/>
+          <path d="M27 49 L40 49 L53 49 L57 84 L23 84Z" fill="#ff6b9d"/>
+          <path d="M27 49 Q40 57 53 49" fill="#ff9dc5"/>
+          <path d="M27 57 L13 72" stroke="#FFD5B0" stroke-width="8" stroke-linecap="round"/>
+          <path d="M53 57 L67 72" stroke="#FFD5B0" stroke-width="8" stroke-linecap="round"/>
+          <rect x="29" y="84" width="8" height="22" rx="4" fill="#FFD5B0"/>
+          <rect x="43" y="84" width="8" height="22" rx="4" fill="#FFD5B0"/>
+          <ellipse cx="33" cy="107" rx="8" ry="5" fill="#ff6b9d"/>
+          <ellipse cx="47" cy="107" rx="8" ry="5" fill="#ff6b9d"/>
+          <rect x="4" y="59" width="15" height="12" rx="2" fill="#ffd93d"/>
+          <rect x="4" y="55" width="15" height="6" rx="2" fill="#ff6b9d"/>
+          <rect x="9" y="49" width="3" height="7" rx="1.5" fill="#c77dff"/>
+          <ellipse cx="11" cy="49" rx="2.5" ry="3.5" fill="#ffd93d"/>
+        </svg>
+      </div>
+      <!-- Centre boy -->
+      <div class="char" style="margin-top:-14px;">
+        <svg width="88" height="122" viewBox="0 0 88 122" fill="none">
+          <circle cx="44" cy="29" r="23" fill="#FFD5B0"/>
+          <path d="M21 23 Q21 5 44 5 Q67 5 67 23 Q67 8 44 8 Q21 8 21 23" fill="#3d2511"/>
+          <path d="M32 27 Q35.5 23 39 27" stroke="#3d2511" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M49 27 Q52.5 23 56 27" stroke="#3d2511" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M36 36 Q44 44 52 36" stroke="#3d2511" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M38 37 Q44 42 50 37" fill="white" opacity=".7"/>
+          <ellipse cx="32" cy="34" rx="5" ry="3" fill="#ffb3ba" opacity=".4"/>
+          <ellipse cx="56" cy="34" rx="5" ry="3" fill="#ffb3ba" opacity=".4"/>
+          <rect x="29" y="52" width="30" height="34" rx="6" fill="#4d96ff"/>
+          <path d="M29 76 L19 114 L36 114 L44 90 L52 114 L69 114 L59 76Z" fill="#2d3a4a"/>
+          <path d="M29 59 L12 42" stroke="#FFD5B0" stroke-width="9" stroke-linecap="round"/>
+          <path d="M59 59 L76 42" stroke="#FFD5B0" stroke-width="9" stroke-linecap="round"/>
+          <circle cx="11" cy="41" r="7" fill="#FFD5B0"/>
+          <circle cx="77" cy="41" r="7" fill="#FFD5B0"/>
+          <text x="4" y="40" font-size="12">⭐</text>
+          <text x="70" y="40" font-size="12">🎉</text>
+          <text x="37" y="74" font-size="16">⭐</text>
+          <ellipse cx="29" cy="116" rx="9" ry="6" fill="#1a1a2e"/>
+          <ellipse cx="59" cy="116" rx="9" ry="6" fill="#1a1a2e"/>
+        </svg>
+      </div>
+      <!-- Bear with balloons -->
+      <div class="char">
+        <svg width="80" height="112" viewBox="0 0 82 112" fill="none">
+          <line x1="20" y1="12" x2="28" y2="47" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+          <line x1="41" y1="7" x2="39" y2="47" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+          <line x1="62" y1="12" x2="53" y2="47" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+          <ellipse cx="20" cy="10" rx="12" ry="14" fill="#6bcb77"/>
+          <ellipse cx="41" cy="7" rx="12" ry="14" fill="#ff6b6b"/>
+          <ellipse cx="62" cy="10" rx="12" ry="14" fill="#c77dff"/>
+          <ellipse cx="16" cy="6" rx="4" ry="5" fill="rgba(255,255,255,.28)" transform="rotate(-20 16 6)"/>
+          <ellipse cx="37" cy="4" rx="4" ry="5" fill="rgba(255,255,255,.28)" transform="rotate(-20 37 4)"/>
+          <ellipse cx="58" cy="6" rx="4" ry="5" fill="rgba(255,255,255,.28)" transform="rotate(-20 58 6)"/>
+          <circle cx="23" cy="24" r="9" fill="#c4845c"/><circle cx="23" cy="24" r="5.5" fill="#e8a882"/>
+          <circle cx="59" cy="24" r="9" fill="#c4845c"/><circle cx="59" cy="24" r="5.5" fill="#e8a882"/>
+          <circle cx="41" cy="41" r="22" fill="#c4845c"/>
+          <ellipse cx="41" cy="45" rx="14" ry="12" fill="#e8a882"/>
+          <circle cx="34" cy="37" r="4" fill="#2d1b00"/><circle cx="48" cy="37" r="4" fill="#2d1b00"/>
+          <circle cx="35" cy="36" r="1.5" fill="white"/><circle cx="49" cy="36" r="1.5" fill="white"/>
+          <ellipse cx="41" cy="45" rx="4" ry="3" fill="#2d1b00"/>
+          <path d="M35 50 Q41 56 47 50" stroke="#2d1b00" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <rect x="25" y="63" width="32" height="26" rx="10" fill="#c4845c"/>
+          <path d="M25 69 L14 56" stroke="#c4845c" stroke-width="9" stroke-linecap="round"/>
+          <path d="M57 69 L68 56" stroke="#c4845c" stroke-width="9" stroke-linecap="round"/>
+          <rect x="27" y="89" width="11" height="18" rx="7" fill="#c4845c"/>
+          <rect x="44" y="89" width="11" height="18" rx="7" fill="#c4845c"/>
+          <ellipse cx="32" cy="108" rx="9" ry="5" fill="#a06040"/>
+          <ellipse cx="50" cy="108" rx="9" ry="5" fill="#a06040"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sh" onclick="scrollToReady()">
+      <span>Scroll Down</span>
+      <div class="sa"></div>
+    </div>
+  </div><!-- /hero -->
+
+  <!-- READY SECTION -->
+  <div class="rs">
+    <span class="fe" style="left:10%;top:15%;font-size:1.5rem;animation-duration:3s;position:absolute;">💫</span>
+    <span class="fe" style="right:10%;top:12%;font-size:1.3rem;animation-duration:2.5s;animation-delay:.5s;position:absolute;">✨</span>
+    <span class="fe" style="left:5%;top:72%;font-size:1.3rem;animation-duration:3.5s;animation-delay:1s;position:absolute;">🌸</span>
+    <span class="fe" style="right:5%;top:68%;font-size:1.2rem;animation-duration:2.8s;animation-delay:.3s;position:absolute;">💕</span>
+    <p class="rh">Hey, You 🌙</p>
+    <p class="rs-sub">I have something very special just for you 💌</p>
+    <button class="nxt" onclick="showPage('p2');buildBalloons();">Ready? 💖</button>
+  </div>
+</div><!-- /p1 -->
+
+
+<!-- ═══════════════════════════════════
+     PAGE 2 · BALLOON POP
+════════════════════════════════════ -->
+<div id="p2" class="page">
+  <div id="str2"></div>
+  <div class="p2-inner">
+    <p class="ph">Pop each balloon 🎈</p>
+    <p class="ph-sub">A little message hides in every one ✨</p>
+    <div class="bgrid" id="balloon-grid"></div>
+    <button class="nxt hidden" id="next-p2" style="margin-top:2rem;" onclick="showPage('p3');buildReasons();">Continue 💕</button>
+  </div>
+  <div class="mo" id="msg-overlay">
+    <div class="mc">
+      <div class="mh">💕</div>
+      <p class="mtxt" id="msg-text"></p>
+      <button class="mc-btn" onclick="closeMsg()">With All My Love 💖</button>
+    </div>
+  </div>
+</div><!-- /p2 -->
+
+
+<!-- ═══════════════════════════════════
+     PAGE 3 · REASONS I LOVE YOU
+════════════════════════════════════ -->
+<div id="p3" class="page">
+  <div class="p3-inner">
+    <h2 class="p3-title">Reasons I Love You</h2>
+    <p class="p3-sub">Just a few of the infinite reasons… 🌸</p>
+    <div class="reasons-grid" id="reasons-grid"></div>
+    <button class="nxt" style="margin-top:1.5rem;" onclick="showPage('p4');">Next 💌</button>
+  </div>
+</div><!-- /p3 -->
+
+
+<!-- ═══════════════════════════════════
+     PAGE 4 · LOVE LETTER
+════════════════════════════════════ -->
+<div id="p4" class="page">
+  <div class="p4-inner">
+    <h2 class="p4-title">A Letter From My Heart</h2>
+
+    <!-- envelope -->
+    <div class="envelope-wrap" id="env-wrap" onclick="openLetter()">
+      <svg width="200" height="140" viewBox="0 0 200 140">
+        <defs>
+          <linearGradient id="eg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff6b9d"/>
+            <stop offset="100%" stop-color="#c77dff"/>
+          </linearGradient>
+        </defs>
+        <rect x="5" y="25" width="190" height="110" rx="14" fill="url(#eg)" opacity=".9"/>
+        <rect x="5" y="25" width="190" height="110" rx="14" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <path d="M5 35 L100 90 L195 35" stroke="rgba(255,255,255,.3)" stroke-width="1.5" fill="none"/>
+        <path d="M5 135 L65 82" stroke="rgba(255,255,255,.2)" stroke-width="1" fill="none"/>
+        <path d="M195 135 L135 82" stroke="rgba(255,255,255,.2)" stroke-width="1" fill="none"/>
+        <path d="M5 25 L100 82 L195 25 Z" fill="rgba(255,107,157,.85)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+        <circle cx="100" cy="65" r="18" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+        <text x="100" y="71" text-anchor="middle" font-size="18">💕</text>
+      </svg>
+      <p class="env-hint">Tap to open 💌</p>
+    </div>
+
+    <!-- letter (revealed on tap) -->
+    <div class="letter-card" id="letter-card">
+      <div class="letter-paper">
+        <p class="letter-salut">My Dearest Love,</p>
+        <p class="letter-body">
+          On this beautiful day the universe chose to bring you into this world, I want you to know how deeply grateful I am that you exist.<br/><br/>
+          You have this magic about you — the way your eyes light up, the way your laugh sounds like my favourite song, the way you make even ordinary moments feel extraordinary.<br/><br/>
+          I love you at 2 AM when you cannot sleep. I love you on your hard days and your easy ones. I love you in every single version of you there has ever been.<br/><br/>
+          You are, without question, the greatest thing that has ever happened to me. 🌙
+        </p>
+        <div class="letter-seal">💌</div>
+        <p class="letter-sign">Forever yours,<br/>The one who loves you most ❤️</p>
+      </div>
+
+      <div class="timeline" style="margin-top:1.2rem;">
+        <div class="tl-item" style="animation-delay:.1s;">
+          <div class="tl-dot" style="background:#ff6b9d;box-shadow:0 0 10px #ff6b9d;"></div>
+          <p class="tl-text"><em style="color:#ffe97a;">The day we met</em> — my life got better instantly</p>
+        </div>
+        <div class="tl-item" style="animation-delay:.25s;">
+          <div class="tl-dot" style="background:#ffd93d;box-shadow:0 0 10px #ffd93d;"></div>
+          <p class="tl-text"><em style="color:#ffe97a;">Every day since</em> — falling a little deeper</p>
+        </div>
+        <div class="tl-item" style="animation-delay:.4s;">
+          <div class="tl-dot" style="background:#c77dff;box-shadow:0 0 10px #c77dff;"></div>
+          <p class="tl-text"><em style="color:#ffe97a;">Today</em> — celebrating you, always and forever</p>
+        </div>
+        <div class="tl-item" style="animation-delay:.55s;">
+          <div class="tl-dot" style="background:#6bcb77;box-shadow:0 0 10px #6bcb77;"></div>
+          <p class="tl-text"><em style="color:#ffe97a;">Forever</em> — right where I belong 💕</p>
+        </div>
+      </div>
+
+      <button class="nxt" style="margin-top:1.5rem;" onclick="showPage('p5');">Final Surprise 🎂</button>
+    </div>
+  </div>
+</div><!-- /p4 -->
+
+
+<!-- ═══════════════════════════════════
+     PAGE 5 · CAKE
+════════════════════════════════════ -->
+<div id="p5" class="page">
+  <div class="p5-inner">
+
+    <!-- cake view -->
+    <div id="cake-view">
+      <p class="candle-hint">✨ Tap the candle to make a wish! 🕯️</p>
+      <svg id="cake-svg" width="270" height="330" viewBox="0 0 270 330"
+           style="cursor:pointer;filter:drop-shadow(0 20px 50px rgba(255,107,157,.45));"
+           onclick="blowCandle()">
+        <defs>
+          <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffd93d" stop-opacity=".4"/>
+            <stop offset="100%" stop-color="#ffd93d" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="135" cy="316" rx="92" ry="12" fill="rgba(255,107,157,.1)"/>
+        <!-- bottom tier -->
+        <rect x="26" y="232" width="218" height="74" rx="14" fill="#ff6b9d"/>
+        <rect x="26" y="225" width="218" height="20" rx="10" fill="#ffb3d1"/>
+        <ellipse cx="55"  cy="235" rx="12" ry="14" fill="#ffb3d1"/>
+        <ellipse cx="86"  cy="238" rx="11" ry="12" fill="#ffb3d1"/>
+        <ellipse cx="118" cy="236" rx="12" ry="14" fill="#ffb3d1"/>
+        <ellipse cx="150" cy="238" rx="11" ry="13" fill="#ffb3d1"/>
+        <ellipse cx="182" cy="236" rx="12" ry="14" fill="#ffb3d1"/>
+        <ellipse cx="213" cy="238" rx="11" ry="13" fill="#ffb3d1"/>
+        <rect x="48" y="252" width="10" height="3.5" rx="1.8" fill="#ffd93d" transform="rotate(-20 48 252)"/>
+        <rect x="80" y="264" width="10" height="3.5" rx="1.8" fill="#c77dff" transform="rotate(15 80 264)"/>
+        <rect x="112" y="254" width="10" height="3.5" rx="1.8" fill="#6bcb77" transform="rotate(-10 112 254)"/>
+        <rect x="144" y="266" width="10" height="3.5" rx="1.8" fill="#4d96ff" transform="rotate(25 144 266)"/>
+        <rect x="172" y="253" width="10" height="3.5" rx="1.8" fill="#ff6b6b" transform="rotate(-15 172 253)"/>
+        <rect x="202" y="264" width="10" height="3.5" rx="1.8" fill="#ffd93d" transform="rotate(10 202 264)"/>
+        <circle cx="42"  cy="270" r="4" fill="rgba(255,255,255,.25)"/>
+        <circle cx="96"  cy="278" r="4" fill="rgba(255,255,255,.25)"/>
+        <circle cx="148" cy="272" r="4" fill="rgba(255,255,255,.25)"/>
+        <circle cx="196" cy="278" r="4" fill="rgba(255,255,255,.25)"/>
+        <circle cx="238" cy="268" r="4" fill="rgba(255,255,255,.25)"/>
+        <text x="50"  y="298" font-size="16">❤️</text>
+        <text x="112" y="302" font-size="14">💕</text>
+        <text x="172" y="297" font-size="16">❤️</text>
+        <!-- middle tier -->
+        <rect x="50" y="164" width="170" height="72" rx="14" fill="#c77dff"/>
+        <rect x="50" y="157" width="170" height="20" rx="10" fill="#dba8ff"/>
+        <ellipse cx="73"  cy="167" rx="11" ry="13" fill="#dba8ff"/>
+        <ellipse cx="103" cy="170" rx="10" ry="12" fill="#dba8ff"/>
+        <ellipse cx="133" cy="168" rx="11" ry="13" fill="#dba8ff"/>
+        <ellipse cx="163" cy="170" rx="10" ry="12" fill="#dba8ff"/>
+        <ellipse cx="193" cy="168" rx="11" ry="13" fill="#dba8ff"/>
+        <circle cx="72"  cy="197" r="5.5" fill="#ffd93d"/>
+        <circle cx="100" cy="206" r="5.5" fill="#ffd93d"/>
+        <circle cx="129" cy="198" r="5.5" fill="#ffd93d"/>
+        <circle cx="158" cy="206" r="5.5" fill="#ffd93d"/>
+        <circle cx="188" cy="198" r="5.5" fill="#ffd93d"/>
+        <text x="60"  y="228" font-size="14">⭐</text>
+        <text x="148" y="230" font-size="14">⭐</text>
+        <!-- top tier -->
+        <rect x="77" y="110" width="116" height="58" rx="14" fill="#ffd93d"/>
+        <rect x="77" y="103" width="116" height="20" rx="10" fill="#ffe97a"/>
+        <ellipse cx="97"  cy="113" rx="9" ry="12" fill="#ffe97a"/>
+        <ellipse cx="122" cy="116" rx="9" ry="11" fill="#ffe97a"/>
+        <ellipse cx="149" cy="113" rx="9" ry="12" fill="#ffe97a"/>
+        <ellipse cx="175" cy="116" rx="9" ry="11" fill="#ffe97a"/>
+        <circle cx="94"  cy="136" r="5" fill="#ff6b9d"/>
+        <circle cx="116" cy="146" r="4.5" fill="#ff6b9d"/>
+        <circle cx="138" cy="137" r="5" fill="#c77dff"/>
+        <circle cx="160" cy="146" r="4.5" fill="#ff6b9d"/>
+        <circle cx="180" cy="136" r="5" fill="#c77dff"/>
+        <text x="120" y="163" font-size="22">💖</text>
+        <!-- candle -->
+        <rect x="127" y="74" width="16" height="38" rx="7" fill="#ff6b9d"/>
+        <rect x="127" y="81" width="16" height="3" rx="1.5" fill="#ffd93d"/>
+        <rect x="127" y="89" width="16" height="3" rx="1.5" fill="#ffd93d"/>
+        <rect x="127" y="97" width="16" height="3" rx="1.5" fill="#ffd93d"/>
+        <line x1="135" y1="74" x2="135" y2="64" stroke="#333" stroke-width="2"/>
+        <!-- flame -->
+        <g class="flame" id="flame">
+          <ellipse cx="135" cy="50" rx="32" ry="40" fill="url(#flameGlow)"/>
+          <g class="flame-inner">
+            <path d="M135 28 Q121 45 124 59 Q124 72 135 72 Q146 72 146 59 Q149 45 135 28Z" fill="#ffd93d" opacity=".9"/>
+            <path d="M135 37 Q128 49 129 58 Q129 67 135 67 Q141 67 141 58 Q143 49 135 37Z" fill="#ff6b00"/>
+            <ellipse cx="135" cy="63" rx="4" ry="5.5" fill="rgba(255,255,255,.8)"/>
+          </g>
+        </g>
+        <!-- smoke -->
+        <path class="smoke-path" id="smoke" d="M135 64 Q130 53 135 43 Q140 33 135 23" stroke="rgba(200,200,200,.55)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- pulse ring -->
+        <circle cx="135" cy="50" r="30" fill="none" stroke="rgba(255,217,61,.25)" stroke-width="1.5" stroke-dasharray="5,4">
+          <animateTransform attributeName="transform" type="rotate" from="0 135 50" to="360 135 50" dur="3s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div><!-- /cake-view -->
+
+    <!-- wishes (shown after candle blown) -->
+    <div class="wishes-sec" id="wishes-sec">
+      <h1 class="wt">Happy Birthday!</h1>
+      <p class="wm">
+        You are my sunshine ☀️<br/>
+        my laughter, my warmth,<br/>
+        my whole heart. Today and<br/>
+        every day I love you more<br/>
+        than words can ever say 💕
+      </p>
+      <!-- Couple illustration -->
+      <svg width="290" height="215" viewBox="0 0 290 215" fill="none" style="animation:fadeUp 1s ease .5s both;">
+        <defs>
+          <radialGradient id="bgGlow2" cx="50%" cy="65%" r="50%">
+            <stop offset="0%" stop-color="#ff6b9d" stop-opacity=".16"/>
+            <stop offset="100%" stop-color="#ff6b9d" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="145" cy="145" rx="108" ry="78" fill="url(#bgGlow2)"/>
+        <path d="M145 200 C80 165 36 132 36 98 C36 72 56 57 78 57 C100 57 120 72 145 94 C170 72 190 57 212 57 C234 57 254 72 254 98 C254 132 210 165 145 200Z" fill="rgba(255,107,157,.07)" stroke="rgba(255,107,157,.2)" stroke-width="1.5"/>
+        <!-- girlfriend -->
+        <path d="M82 72 Q78 98 80 118" fill="#7B3F00"/>
+        <path d="M120 72 Q124 98 122 118" fill="#7B3F00"/>
+        <circle cx="101" cy="74" r="21" fill="#FFD5B0"/>
+        <path d="M80 68 Q80 50 101 48 Q122 50 122 68" fill="#7B3F00"/>
+        <circle cx="88" cy="55" r="6" fill="#ff6b9d"/>
+        <circle cx="85" cy="53" r="3" fill="#ffb3d1"/>
+        <path d="M93 71 Q96.5 68 100 71" stroke="#3d2511" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M102 71 Q105.5 68 109 71" stroke="#3d2511" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="92" cy="79" rx="6" ry="3.5" fill="#ffb3ba" opacity=".45"/>
+        <ellipse cx="110" cy="79" rx="6" ry="3.5" fill="#ffb3ba" opacity=".45"/>
+        <path d="M95 83 Q101 89 107 83" stroke="#3d2511" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M85 95 L101 95 L117 95 L123 158 L79 158Z" fill="#ff6b9d"/>
+        <path d="M85 95 Q101 105 117 95" fill="#ff9dc5"/>
+        <path d="M117 110 Q138 105 155 114" stroke="#FFD5B0" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <path d="M85 110 Q76 122 73 136" stroke="#FFD5B0" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <path d="M91 158 L86 196"  stroke="#FFD5B0" stroke-width="9" stroke-linecap="round"/>
+        <path d="M110 158 L115 196" stroke="#FFD5B0" stroke-width="9" stroke-linecap="round"/>
+        <ellipse cx="84"  cy="197" rx="11" ry="6" fill="#ff6b9d"/>
+        <ellipse cx="117" cy="197" rx="11" ry="6" fill="#ff6b9d"/>
+        <!-- boyfriend -->
+        <circle cx="178" cy="70" r="23" fill="#F5C5A0"/>
+        <path d="M155 65 Q155 47 178 45 Q201 47 201 65 Q201 50 178 50 Q155 50 155 65" fill="#3d2a1a"/>
+        <circle cx="170" cy="68" r="4" fill="#3d2a1a"/><circle cx="186" cy="68" r="4" fill="#3d2a1a"/>
+        <circle cx="171" cy="67" r="1.5" fill="white"/><circle cx="187" cy="67" r="1.5" fill="white"/>
+        <path d="M166 62 Q170 59 174 61" stroke="#3d2a1a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M182 61 Q186 59 190 62" stroke="#3d2a1a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <path d="M170 83 Q178 91 186 83" stroke="#3d2a1a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="166" cy="79" rx="6" ry="3.5" fill="#ffb3ba" opacity=".38"/>
+        <ellipse cx="190" cy="79" rx="6" ry="3.5" fill="#ffb3ba" opacity=".38"/>
+        <path d="M158 93 L178 93 L198 93 L204 152 L152 152Z" fill="#4d96ff"/>
+        <path d="M171 93 L178 103 L185 93" fill="#2d76df"/>
+        <path d="M158 110 Q138 105 123 114" stroke="#F5C5A0" stroke-width="11" stroke-linecap="round" fill="none"/>
+        <path d="M198 110 Q208 124 211 138" stroke="#F5C5A0" stroke-width="11" stroke-linecap="round" fill="none"/>
+        <path d="M160 152 L154 196 L170 196 L178 168 L186 196 L202 196 L196 152Z" fill="#2d3a4a"/>
+        <ellipse cx="162" cy="198" rx="12" ry="7" fill="#1a2030"/>
+        <ellipse cx="194" cy="198" rx="12" ry="7" fill="#1a2030"/>
+        <text x="132" y="42"  font-size="18">💕</text>
+        <text x="155" y="27"  font-size="14">❤️</text>
+        <text x="110" y="32"  font-size="13">✨</text>
+        <text x="175" y="16"  font-size="12">💫</text>
+        <text x="42"  y="102" font-size="18">✨</text>
+        <text x="222" y="95"  font-size="16">⭐</text>
+        <text x="45"  y="162" font-size="14">💫</text>
+        <text x="228" y="172" font-size="16">✨</text>
+      </svg>
+      <p class="forever">Forever yours 💕</p>
+    </div><!-- /wishes-sec -->
+
+  </div>
+</div><!-- /p5 -->
+
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+/* ── STARS ── */
+(function(){
+  var cv=document.getElementById('star-canvas');
+  var cx=cv.getContext('2d');
+  function resize(){cv.width=innerWidth;cv.height=innerHeight;}
+  resize();addEventListener('resize',resize);
+  var colors=['255,255,255','255,200,224','220,180,255','255,235,150'];
+  var S=[];
+  for(var k=0;k<160;k++){
+    S.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+      r:Math.random()*1.8+.3,a:Math.random(),sp:Math.random()*.008+.002,
+      color:colors[Math.floor(Math.random()*colors.length)]});
+  }
+  (function tick(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    for(var i=0;i<S.length;i++){
+      var s=S[i];s.a+=s.sp;if(s.a>1||s.a<0)s.sp*=-1;
+      cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      cx.fillStyle='rgba('+s.color+','+s.a+')';cx.fill();
+    }
+    requestAnimationFrame(tick);
+  })();
+})();
+
+/* ── CONFETTI ── */
+var CC=['#ff6b9d','#ffd93d','#c77dff','#6bcb77','#4d96ff','#ff6b6b','#ffb3d1'];
+function makeConfetti(parent){
+  var el=document.createElement('div');el.className='cf';
+  el.style.cssText='left:'+Math.random()*100+'vw;width:'+(Math.random()*6+5)+'px;height:'+(Math.random()*12+8)+'px;background:'+CC[Math.floor(Math.random()*CC.length)]+';animation-duration:'+(Math.random()*3+4)+'s;animation-delay:'+(Math.random()*8)+'s;opacity:'+(Math.random()*.5+.5)+';';
+  parent.appendChild(el);
+}
+for(var ci=0;ci<30;ci++) makeConfetti(document.getElementById('p1'));
+
+/* ── STREAMERS ── */
+(function(){
+  var c=document.getElementById('str2');
+  var SC=['#ff6b9d','#ffd93d','#c77dff','#6bcb77','#4d96ff'];
+  for(var i=0;i<12;i++){
+    var s=document.createElement('div');s.className='str';
+    s.style.cssText='left:'+(i*8.5+Math.random()*6)+'%;height:'+(Math.random()*90+80)+'px;background:'+SC[i%SC.length]+';animation-duration:'+(Math.random()*1.5+1.5)+'s;animation-delay:'+(Math.random()*.9)+'s;';
+    c.appendChild(s);
+  }
+})();
+
+/* ── PAGE NAV ── */
+function showPage(id){
+  var pages=document.querySelectorAll('.page');
+  for(var i=0;i<pages.length;i++) pages[i].classList.remove('active');
+  var pg=document.getElementById(id);
+  pg.classList.add('active');pg.scrollTop=0;
+}
+function scrollToReady(){
+  document.getElementById('p1').scrollTo({top:window.innerHeight,behavior:'smooth'});
+}
+
+/* ── BALLOONS ── */
+var MSGS=[
+  "Every moment with you feels like pure magic! You turn ordinary days into extraordinary memories, and I am endlessly grateful you are mine.",
+  "You are my favourite person to laugh with, to dream with, and to love. Happy Birthday to my entire world.",
+  "In a room full of people, my eyes will always find you first. You are, and always will be, my person.",
+  "Thank you for being my sunshine on the darkest of days. I love you so much more than these words could ever hold.",
+  "You are not just my love, you are my best friend, my adventure partner, my safe place, and my home.",
+  "Today is YOUR day, and I want you to feel how deeply, truly, and endlessly you are loved by me. Always."
+];
+var BCOLS=[
+  {bg:'radial-gradient(circle at 35% 35%,#ff9dc5,#ff6b9d)',knot:'#e0457a'},
+  {bg:'radial-gradient(circle at 35% 35%,#ffe97a,#ffd93d)',knot:'#e0b800'},
+  {bg:'radial-gradient(circle at 35% 35%,#dba8ff,#c77dff)',knot:'#9b45e0'},
+  {bg:'radial-gradient(circle at 35% 35%,#99e8a2,#6bcb77)',knot:'#3fa84e'},
+  {bg:'radial-gradient(circle at 35% 35%,#85b8ff,#4d96ff)',knot:'#1a64e0'},
+  {bg:'radial-gradient(circle at 35% 35%,#ff9a9a,#ff6b6b)',knot:'#e03a3a'}
+];
+var PCOLS=['#ff6b9d','#ffd93d','#c77dff','#6bcb77','#4d96ff','#ff6b6b'];
+var popped=0;
+
+function buildBalloons(){
+  var grid=document.getElementById('balloon-grid');
+  grid.innerHTML='';popped=0;
+  document.getElementById('next-p2').classList.add('hidden');
+  for(var i=0;i<BCOLS.length;i++){
+    (function(idx){
+      var c=BCOLS[idx];
+      var w=document.createElement('div');w.className='bw';
+      w.style.animationDelay=(idx*.18)+'s';
+      w.innerHTML='<div class="bb" style="background:'+c.bg+';">🎈</div><div class="bkn" style="background:'+c.knot+';"></div><div class="bst"></div>';
+      w.addEventListener('click',function(){popBalloon(w,idx);});
+      grid.appendChild(w);
+    })(i);
+  }
+}
+
+function popBalloon(w,i){
+  if(w.classList.contains('popped')||w.classList.contains('popping')) return;
+  w.classList.add('popping');
+  var body=w.querySelector('.bb');
+  for(var j=0;j<12;j++){
+    var p=document.createElement('div');p.className='pt';
+    var ang=(j/12)*360;
+    var dist=40+Math.random()*30;
+    var tx=Math.cos(ang*Math.PI/180)*dist;
+    var ty=Math.sin(ang*Math.PI/180)*dist;
+    p.style.cssText='--tx:'+tx+'px;--ty:'+ty+'px;background:'+PCOLS[i]+';top:42px;left:34px;';
+    body.appendChild(p);
+  }
+  setTimeout(function(){
+    w.classList.remove('popping');w.classList.add('popped');
+    popped++;showMsg(MSGS[i]);
+    if(popped===6) setTimeout(function(){document.getElementById('next-p2').classList.remove('hidden');},700);
+  },450);
+}
+function showMsg(txt){
+  document.getElementById('msg-text').textContent=txt;
+  document.getElementById('msg-overlay').classList.add('open');
+}
+function closeMsg(){document.getElementById('msg-overlay').classList.remove('open');}
+
+/* ── REASONS ── */
+var REASONS=[
+  {icon:'😂',title:'Your Laugh',text:'The most beautiful sound in the world. It instantly makes everything better.'},
+  {icon:'🤝',title:'Your Kindness',text:'You treat everyone with such warmth and care. It is one of the things I admire most about you.'},
+  {icon:'🌙',title:'Late Night Talks',text:'The conversations we have at 2 AM mean more to me than you will ever know.'},
+  {icon:'💪',title:'Your Strength',text:'You handle life\'s hardest moments with such grace. You inspire me every single day.'},
+  {icon:'🏠',title:'You Feel Like Home',text:'No matter where we are, as long as I am with you, I feel completely at home.'},
+  {icon:'✨',title:'The Little Things',text:'Your small habits, the way you remember tiny details — every little thing about you is perfect to me.'},
+  {icon:'🌈',title:'Your Positivity',text:'You have an incredible ability to find light even in the darkest of places. It is truly magical.'},
+  {icon:'💕',title:'How You Love',text:'You love deeply and completely. Being loved by you is the greatest gift of my life.'}
+];
+
+function buildReasons(){
+  var grid=document.getElementById('reasons-grid');
+  grid.innerHTML='';
+  for(var i=0;i<REASONS.length;i++){
+    (function(idx){
+      var r=REASONS[idx];
+      var card=document.createElement('div');
+      card.className='reason-card';
+      card.style.animationDelay=(idx*.08+.1)+'s';
+      card.innerHTML='<div class="reason-icon" style="animation-delay:'+(idx*.15)+'s;">'+r.icon+'</div><div class="reason-text"><strong>'+r.title+'</strong>'+r.text+'</div>';
+      grid.appendChild(card);
+    })(i);
+  }
+}
+
+/* ── ENVELOPE ── */
+function openLetter(){
+  document.getElementById('env-wrap').style.display='none';
+  document.getElementById('letter-card').classList.add('show');
+}
+
+/* ── CANDLE ── */
+var blown=false;
+function blowCandle(){
+  if(blown) return;blown=true;
+  document.getElementById('flame').classList.add('blown');
+  setTimeout(function(){document.getElementById('smoke').classList.add('active');},400);
+  setTimeout(function(){
+    document.getElementById('cake-view').style.display='none';
+    document.getElementById('wishes-sec').classList.add('show');
+    for(var i=0;i<30;i++) makeConfetti(document.getElementById('p5'));
+  },1900);
+}
+</script>
+</body>
+</html>
